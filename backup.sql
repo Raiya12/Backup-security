@@ -44,3 +44,30 @@ TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backu
 --5. Copy-Only Backup
 BACKUP DATABASE TrainingDB 
 TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\TrainingDB_CopyOnly.bak' WITH COPY_ONLY;
+
+
+------------------------------------------------------------------Part 3: Real-World Scenario Simulation 
+-- Create HospitalDB for testing
+CREATE DATABASE HospitalDB;
+GO
+
+USE HospitalDB;
+GO
+
+-- Sample table
+CREATE TABLE Patients (
+    PatientID INT PRIMARY KEY,
+    FullName NVARCHAR(100),
+    DateOfAdmission DATE
+);
+
+-- Sample data
+INSERT INTO Patients VALUES
+(1, 'Amina Youssef', '2025-05-01'),
+(2, 'Khaled Omar', '2025-05-20');
+GO
+
+-- Example full backup (adjust path if needed)
+BACKUP DATABASE HospitalDB 
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\HospitalDB\HospitalDB_Full_20250529.bak' 
+WITH INIT, COMPRESSION;
